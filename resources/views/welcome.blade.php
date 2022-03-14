@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UFT-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body>
-
-    <div>
-        <p class="p-6 bg-white border-b border-gray-200"> 
-            User list
-        </p>
+@extends('layouts.app')
+@section('title', __('Welcome'))
+@section('content')
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5><span class="text-center fa fa-home"></span> @yield('title')</h5></div>
+            <div class="card-body">
+              <h5>  
+            @guest
+				
+				{{ __('Welcome to') }} {{ config('app.name', 'Laravel') }} !!! </br>
+				Please contact admin to get your Login Credentials or click "Login" to go to your Dashboard.
+                
+			@else
+					Hi {{ Auth::user()->name }}, Welcome back to {{ config('app.name', 'Laravel') }}.
+            @endif	
+				</h5>
+            </div>
+        </div>
     </div>
-
-    <ul>
-        @foreach ($users as $user)
-            <li>{{ $user->name }}</li>
-        @endforeach
-    </ul>
-    
-</body>
-</html>
+</div>
+</div>
+@endsection
